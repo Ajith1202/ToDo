@@ -1,0 +1,47 @@
+
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-brand mb-0 h1">To Do</span>
+</nav>
+
+<head>	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<style>
+	body{
+		background-color: #D96846;
+		font-family: 'Montserrat', sans-serif;
+	}
+	#row{
+		width: 65%;
+		background-color: #31525B;
+		margin:40px auto;
+		box-sizing: border-box;
+		box-shadow: 2px 0px 30px -2px;
+		border-radius: 4px;		
+
+	}
+	#form-body{
+		width: 100%;
+		background-color: white;
+		flex: 1;
+		flex-direction: column;
+		margin:auto;
+		box-sizing: border-box;
+		box-shadow: 2px 0px 30px -2px;
+		border-radius: 4px;
+	}
+
+	.btn{
+		margin-top: 10px;
+	}
+
+</style>
+<div id="row" class="card card-body">
+	<form id="form-body" class="card card-body" method="POST" action="">
+		{% csrf_token %}
+		{{ form }}
+
+		<input class="btn btn-info" type="submit" name="update_task">
+	</form>
+</div>

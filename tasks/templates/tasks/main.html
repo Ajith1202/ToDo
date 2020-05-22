@@ -1,0 +1,96 @@
+
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-brand mb-0 h1">To Do</span>
+</nav>
+
+<head>	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<style>
+	body{
+		background-color: #D96846;
+		font-family: 'Montserrat', sans-serif;
+	}
+	#main-block{
+		width: 65%;
+		background-color: #31525B;
+		margin:40px auto;
+		box-sizing: border-box;
+		box-shadow: 2px 0px 30px -2px;
+		border-radius: 4px;
+	}
+
+
+	.row{
+		width: 60%;
+		margin:auto;
+		background-color: #FAE6B1;
+		margin-left: auto;
+	}
+	#entry-bar{
+		width: 100%;
+		background-color: white;
+		margin:auto;
+		box-sizing: border-box;
+		box-shadow: 2px 0px 30px -2px;
+		border-radius: 4px;
+	}
+	#row{
+		flex-direction: row;
+		margin-top: 10px;
+		background-color: #FAE6B1;
+	}
+	#row1{
+		flex-direction: row;
+		margin-top: 10px;
+		background-color: #FAE6B1;
+	}
+	.note{
+		flex: 1;
+		margin-top: auto;
+	}
+	.btn-sm{
+		background-color: white;
+	}
+	mark{
+		background-color: #D96846;
+		color: white; 
+	}
+
+
+
+
+
+</style>
+
+<div id="main-block" class="card card-body">
+	<form id="entry-bar" class="card card-body" method="POST" action="/">
+		{% csrf_token %}
+		{{ form.title }}
+		<br>
+		<input id="submit-button" class="btn btn-info" type="submit" name="create_task">
+	</form>
+
+	{% for item in task %}
+		
+		{% if item.important == True %}
+			<div id="row" class="card card-body">
+				<mark class="note">->{{ item.title }}</mark>
+				<a class="btn btn-sm btn-outline-info" href="{% url 'update' item.id %}">Update</a>
+				<a class="btn btn-sm btn-outline-danger" href="{% url 'delete' item.id %}">Delete</a>
+			</div>	
+		{% endif %}	
+			
+	{% endfor %}
+	{% for item in task %}				
+		{% if item.important == False %}	
+			<div id="row1" class="card card-body">
+				<span class="note">->{{ item.title }}</span>
+				<a class="btn btn-sm btn-outline-info" href="{% url 'update' item.id %}">Update</a>
+				<a class="btn btn-sm btn-outline-danger" href="{% url 'delete' item.id %}">Delete</a>	
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>
